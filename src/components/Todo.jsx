@@ -25,10 +25,10 @@ const Todo = () => {
     }
   };
 
-  const handleToggle = clickedTask => {
+  const handleToggle = id => {
     const updatedTasks = tasks.map(task => {
-      if (task.id === clickedTask.id) {
-        return { ...task, isUnderlined: !task.isUnderlined };
+      if (task.id === id) {
+        return { ...task, isSelect: !task.isSelect };
       }
       return task;
     });
@@ -90,10 +90,10 @@ const Todo = () => {
             <React.Fragment key={i}>
               <div className='flex justify-between items-center p-2 transition-all duration-200'>
                 <div
-                  className={`text-left w-[90%] break-words ${
-                    task.isUnderlined ? 'line-through' : ''
+                  className={`text-left w-[90%] break-words cursor-pointer ${
+                    task.isSelect ? 'line-through' : ''
                   }`}
-                  onClick={() => handleToggle(task)}
+                  onClick={() => handleToggle(task.id)}
                 >
                   {task.title}
                 </div>
